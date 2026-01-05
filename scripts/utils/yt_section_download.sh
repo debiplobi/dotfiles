@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Video URL
-VIDEO_URL="https://youtu.be/zsh6stxGhn0"
+VIDEO_URL="https://youtu.be/HMGmuNiHhZM?si=jfGYeb1tWY98FG-i"
 
 # Output base name (no extension)
 OUTPUT_BASE="output_clip"
 
 # Time sections to extract (format: start-end)
 SECTIONS=(
-    "00:10:15-00:10:30"
-    "00:17:54-00:19:40"
-    "00:21:40-00:23:07"
+    "00:06:11-00:06:31"
+    # "00:01:15-00:01:48"
+    # "00:11:23-00:12:22"
 )
 
 # Clean up any existing files
@@ -24,7 +24,7 @@ for i in "${!SECTIONS[@]}"; do
     
     echo "Downloading section: $START_END → $OUTFILE"
 
-    yt-dlp -f "bv*+ba/best" \
+    yt-dlp --cookies-from-browser firefox \
         --download-sections "*${START_END}" \
         --merge-output-format mp4 \
         -o "$OUTFILE" \
@@ -38,4 +38,6 @@ done
 echo "Merging clips into final_output.mp4..."
 ffmpeg -f concat -safe 0 -i merge_list.txt -c copy final_output.mp4
 
+
+rm -f merge_list.txt 
 echo "✅ Done. Output saved to: final_output.mp4"
