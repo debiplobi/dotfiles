@@ -1,0 +1,27 @@
+sys-kernel/installkernel grub dracut
+
+x11-libs/libdrm video_cards_radeon
+
+media-video/pipewire sound-server
+media-sound/pulseaudio -daemon
+
+x11-drivers/nvidia-drivers kernel-open tools modules-compress
+
+gnome-base/gvfs mtp udisks policykit fuse keyring
+
+net-vpn/wireguard-tools wg-quick
+
+media-fonts/nerdfonts jetbrainsmono
+
+sys-boot/grub mount
+
+net-misc/networkmanager modemanager tools
+
+gui-apps/waybar tray
+gnome-extra/nm-applet appindicator
+# required by app-misc/ani-cli-4.10::guru
+# required by ani-cli (argument)
+>=net-misc/aria2-1.37.0 adns
+
+media-video/ffmpeg nvidia nvenc cuda encode x264 x265 mp3 opus vorbis vpx
+
