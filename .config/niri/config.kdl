@@ -9,6 +9,14 @@
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
+    DISPLAY ":0"
+    XDG_DATA_DIRS "/home/endofnation/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
+
+
+}
+cursor {
+  xcursor-theme "Adwaita"
+  xcursor-size 24
 }
 input {
   mod-key "Alt"
@@ -42,8 +50,8 @@ input {
         // drag false
         // drag-lock
         // natural-scroll
-        accel-speed 0.2
-        accel-profile "flat"
+        // accel-speed 0.2
+        // accel-profile "flat"
         // scroll-method "two-finger"
         // disabled-on-external-mouse
     }
@@ -51,7 +59,7 @@ input {
     mouse {
         // off
         // natural-scroll
-        accel-speed 0.01
+        accel-speed 0.1
         accel-profile "flat"
         // scroll-method "no-scroll"
     }
@@ -273,10 +281,13 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
+// spawn-at-startup "swaybg -m fill -i /home/endofnation/.config/wallpaper/city.png"
+spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
-spawn-at-startup "syncthing -no-browser"
+// spawn-at-startup "syncthing -no-browser"
 spawn-at-startup "nm-applet"
-spawn-at-startup "awww-daemon"
+spawn-at-startup "gentoo-pipewire-launcher"
+spawn-at-startup "swww-daemon"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock --color 2e2e2e -f" "before-sleep" "swaylock --color 2e2e2e -f"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -307,7 +318,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // https://yalter.github.io/niri/Configuration:-Animations
 animations {
     // Uncomment to turn off all animations.
-    // off
+    off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
@@ -319,6 +330,18 @@ animations {
 
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
+
+window-rule {
+    match app-id="com.github.iwalton3.jellyfin-media-player"
+    open-fullscreen true
+}
+window-rule {
+    match app-id="brave-browser"
+    open-maximized true
+
+}
+
+
 window-rule {
     // This regular expression is intentionally made as specific as possible,
     // since this is the default config, and we want no false positives.
@@ -584,7 +607,7 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
+    Mod+Space       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
@@ -600,8 +623,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
+    Alt+S { screenshot; }
+    Alt+Shift+S { screenshot-screen; }
+    // Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
