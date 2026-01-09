@@ -1,3 +1,3 @@
 return {
-	require("plugins.themes.onenord"),
+	require("plugins.themes.catppuccin"),
 }

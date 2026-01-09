@@ -5,8 +5,11 @@ return {
 		local configs = require("nvim-treesitter.configs")
 
 		configs.setup({
-			autoinstall = true,
-			highlight = { enable = true },
+			highlight = {
+				enable = true,
+				autoinstall = true,
+				highlight = { enable = true, additional_vim_regex_highlighting = false },
+			},
 			indent = { enable = true },
 			fold = { enable = true },
 			ensure_installed = {

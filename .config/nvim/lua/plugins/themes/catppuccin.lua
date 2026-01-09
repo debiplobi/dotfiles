@@ -11,18 +11,15 @@ return {
 					light = "latte",
 					dark = "mocha",
 				},
-				-- color_overrides = {
-					-- mocha = {
-					-- 	blue = "#5b76a8", -- darker blue
-					-- 	sky = "#6c8cc4", -- more muted sky
-					-- 	sapphire = "#4e6a8e", -- deeper tone
-					-- },
-				-- },
 				transparent_background = true, -- disables setting the background color.
+				float = {
+					transparent = true, -- enable transparent floating windows
+					solid = false, -- use solid styling for floating windows, see |winborder|
+				},
 				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-				term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+				-- term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
 				dim_inactive = {
-					enabled = true, -- dims the background color of inactive window
+					enabled = false, -- dims the background color of inactive window
 					shade = "dark",
 					percentage = 0.15, -- percentage of the shade to apply to the inactive window
 				},
@@ -33,7 +30,7 @@ return {
 					comments = { "italic" }, -- Change the style of comments
 					conditionals = { "italic" },
 					loops = {},
-					functions = {},
+					functions = { "bold" },
 					keywords = {},
 					strings = {},
 					variables = {},
@@ -44,17 +41,41 @@ return {
 					operators = {},
 					-- miscs = {}, -- Uncomment to turn off hard-coded styles
 				},
+				lsp_styles = { -- Handles the style of specific lsp hl groups (see `:h lsp-highlight`).
+					virtual_text = {
+						errors = { "italic" },
+						hints = { "italic" },
+						warnings = { "italic" },
+						information = { "italic" },
+						ok = { "italic" },
+					},
+					underlines = {
+						errors = { "underline" },
+						hints = { "underline" },
+						warnings = { "underline" },
+						information = { "underline" },
+						ok = { "underline" },
+					},
+					inlay_hints = {
+						background = false,
+					},
+				},
+				color_overrides = {},
 				custom_highlights = {},
 				default_integrations = true,
+				auto_integrations = true,
 				integrations = {
-					cmp = true,
-					gitsigns = true,
-					nvimtree = true,
+					fidget = true,
 					treesitter = true,
-					notify = true,
-					mini = {
+					neotree = true,
+					mason = true,
+					telescope = {
 						enabled = true,
-						indentscope_color = "",
+					},
+					lsp_trouble = true,
+					alpha = true,
+					blink_cmp = {
+						style = "bordered",
 					},
 					-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 				},
