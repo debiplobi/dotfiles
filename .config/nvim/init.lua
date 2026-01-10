@@ -1,46 +1,58 @@
+vim.opt.number = true
+vim.opt.smartindent = true
+vim.opt.termguicolors = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = false
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
-vim.g.mapleader = " "
-vim.cmd("set relativenumber")
---FOLDING
-vim.cmd("set foldmethod=manual")
-vim.cmd("set foldcolumn=1")
--- vim.cmd("set foldlevel=99")
--- vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
+vim.opt.number = true
+-- vim.cmd("set relativenumber")
+vim.opt.smartindent = true
+vim.opt.termguicolors = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
+vim.opt.wrap = false
+vim.g.have_nerd_font = true
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
+vim.opt.wrap = false
+vim.opt.clipboard = "unnamedplus"
+vim.o.undofile = true
+vim.o.cursorline = true
+vim.o.scrolloff = 10
+----REMAPS-------
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-end
-
-vim.opt.rtp:prepend(lazypath)
-
+-- keep cursor centered
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+--- Window Switching
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
-require("remap")
-require("set")
-require("neovide")
-require("highlightYank")
-require("lazy").setup("plugins")
+-- Diagnostic keymaps
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- vim.lsp.config("rust_analyzer", {
--- 	settings = {
--- 		["rust-analyzer"] = {
--- 			cargo = {
--- 				features = "all", -- Enable all features
--- 			},
--- 		},
--- 	},
--- })
+--Highlight Yank
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local yank_group = augroup("HighlightYank", {})
+autocmd("TextYankPost", {
+	group = yank_group,
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 40,
+		})
+	end,
+})
+
+require("config.lazy")
