@@ -1,43 +1,53 @@
 #!/bin/bash
+set -e
 
-# Video URL
-VIDEO_URL="https://youtu.be/HMGmuNiHhZM?si=jfGYeb1tWY98FG-i"
+# --- CONFIG ---
+VIDEO_URL="https://www.youtube.com/watch?v=V2G1yd0XfrY"
 
-# Output base name (no extension)
-OUTPUT_BASE="output_clip"
-
-# Time sections to extract (format: start-end)
 SECTIONS=(
-    "00:06:11-00:06:31"
-    # "00:01:15-00:01:48"
-    # "00:11:23-00:12:22"
+  "00:00:45-00:01:29"
+  "00:04:10-00:04:55"
+  "00:10:30-00:12:20"
 )
 
-# Clean up any existing files
-rm -f "${OUTPUT_BASE}"_*.mp4 merge_list.txt final_output.mp4
+# --- ALWAYS use cookies ---
+YTDLP="yt-dlp --cookies-from-browser firefox"
 
-# Download each section
+# Temp dir (auto-cleaned)
+TMP_DIR="$(mktemp -d)"
+
+# Get safe video title
+VIDEO_TITLE="$($YTDLP --print title "$VIDEO_URL" | sed 's/[\/:*?"<>|]/_/g')"
+FINAL_OUTPUT="${VIDEO_TITLE}.mp4"
+
+MERGE_LIST="$TMP_DIR/merge_list.txt"
+
+echo "🎬 Title : $VIDEO_TITLE"
+echo "📁 Temp  : $TMP_DIR"
+
+# Download sections
 for i in "${!SECTIONS[@]}"; do
-    START_END="${SECTIONS[$i]}"
-    INDEX=$(printf "%02d" $((i + 1)))
-    OUTFILE="${OUTPUT_BASE}_${INDEX}.mp4"
-    
-    echo "Downloading section: $START_END → $OUTFILE"
+  START_END="${SECTIONS[$i]}"
+  INDEX=$(printf "%02d" $((i + 1)))
+  OUTFILE="$TMP_DIR/clip_${INDEX}.mp4"
 
-    yt-dlp --cookies-from-browser firefox \
-        --download-sections "*${START_END}" \
-        --merge-output-format mp4 \
-        -o "$OUTFILE" \
-        "$VIDEO_URL"
-    
-    # Add to merge list for ffmpeg
-    echo "file '$OUTFILE'" >> merge_list.txt
+  echo "⬇️  $START_END"
+
+  $YTDLP \
+    --download-sections "*${START_END}" \
+    --merge-output-format mp4 \
+    -o "$OUTFILE" \
+    "$VIDEO_URL"
+
+  echo "file '$OUTFILE'" >> "$MERGE_LIST"
 done
 
-# Merge clips
-echo "Merging clips into final_output.mp4..."
-ffmpeg -f concat -safe 0 -i merge_list.txt -c copy final_output.mp4
+# Merge
+echo "🔗 Merging → $FINAL_OUTPUT"
+ffmpeg -loglevel error -stats \
+  -f concat -safe 0 -i "$MERGE_LIST" -c copy "$FINAL_OUTPUT"
 
+# Cleanup
+rm -rf "$TMP_DIR"
 
-rm -f merge_list.txt 
-echo "✅ Done. Output saved to: final_output.mp4"
+echo "✅ Done → $FINAL_OUTPUT"

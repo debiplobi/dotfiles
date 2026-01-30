@@ -1,3 +1,10 @@
+require("config.lazy")
+require("config.options")
+
+
+-- Disable Netrw
+vim.g.loaded_netrwPlugin = 0
+
 vim.opt.number = true
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
@@ -26,6 +33,8 @@ vim.opt.clipboard = "unnamedplus"
 vim.o.undofile = true
 vim.o.cursorline = true
 vim.o.scrolloff = 10
+-- Preview substitutions live, as you type!
+vim.o.inccommand = 'split'
 ----REMAPS-------
 
 -- keep cursor centered
@@ -55,4 +64,4 @@ autocmd("TextYankPost", {
 	end,
 })
 
-require("config.lazy")
+

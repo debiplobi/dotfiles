@@ -24,8 +24,8 @@ vim.keymap.set("n", "<leader>l", ":Lazy<CR>")
 require("lazy").setup({
 	spec = {
 		-- import your plugins
-		{ import = "plugins" },
-		{ import = "plugins.themes" },
+		-- { import = "plugins" },
+		-- { import = "plugins.themes" },
 		{ import = "plugins.core" },
 		{ import = "plugins.extras" },
 	},
@@ -71,7 +71,7 @@ require("lazy").setup({
 		notify = false,
 	},
 	change_detection = {
-		notify = false,
+		notify = true,
 	},
 	-- checker = { enabled = true },
 })

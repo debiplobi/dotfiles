@@ -16,3 +16,21 @@ net-ftp/vsftpd
 www-apps/zola
 dev-vcs/lazygit
 net-proxy/ngrok-bin
+media-video/obs-studio
+gui-libs/xdg-desktop-portal-hyprland
+# required by gui-libs/xdg-desktop-portal-hyprland-1.3.11::guru
+# required by gui-libs/xdg-desktop-portal-hyprland (argument)
+=dev-cpp/sdbus-c++-2.1.0 ~amd64
+gui-apps/wf-recorder
+
+media-fonts/maple-font
+media-fonts/nerd-fonts
+app-text/tldr
+
+dev-games/godot
+dev-games/recastnavigation
+net-libs/wslay
+
+gui-display/ly
+
+

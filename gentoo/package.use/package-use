@@ -2,7 +2,7 @@ sys-kernel/installkernel grub dracut
 
 x11-libs/libdrm video_cards_radeon
 
-media-video/pipewire sound-server
+media-video/pipewire sound-server dbus v4l
 media-sound/pulseaudio -daemon
 
 x11-drivers/nvidia-drivers kernel-open tools modules-compress
@@ -23,5 +23,10 @@ gnome-extra/nm-applet appindicator
 # required by ani-cli (argument)
 >=net-misc/aria2-1.37.0 adns
 
-media-video/ffmpeg nvidia nvenc cuda encode x264 x265 mp3 opus vorbis vpx
+media-video/ffmpeg nvidia nvenc cuda encode x264 x265 mp3 opus vorbis vpx vaapi
+
+media-video/obs-studio lua nvenc speex v4l wayland pipewire
+
+media-fonts/nerd-fonts firacode
+
 

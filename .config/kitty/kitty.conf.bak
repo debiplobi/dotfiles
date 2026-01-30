@@ -69,7 +69,7 @@ cursor_blink_interval 0
 background_opacity 1.0
 
 # Reduce Kitty's aggressive antialias brightness
-#font_features none
+font_features none
 
 
 
@@ -79,14 +79,16 @@ window_padding_width 2
 
 
 # BEGIN_KITTY_THEME
-# Ayu Mirage
+# Everforest Dark Soft
 include current-theme.conf
 # END_KITTY_THEME
 #
---- ultra-dim overrides ---
+# --- ultra-dim overrides ---
 background #111111
 foreground #dddddd
+
 color7  #b8b8b8
 color15 #d0d0d0
+
 cursor #888888
 cursor_text_color #161821

@@ -8,7 +8,8 @@
 // https://yalter.github.io/niri/Configuration:-Input
 
 environment {
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    ELECTRON_OZONE_PLATFORM_HINT "x11"
+    // ELECTRON_OZONE_PLATFORM_HINT "auto"
     DISPLAY ":0"
     XDG_DATA_DIRS "/home/endofnation/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
 
@@ -284,6 +285,7 @@ layout {
 // spawn-at-startup "swaybg -m fill -i /home/endofnation/.config/wallpaper/city.png"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
+spawn-at-startup "gnome-keyring-daemon --start --components=secrets"
 // spawn-at-startup "syncthing -no-browser"
 spawn-at-startup "nm-applet"
 spawn-at-startup "./xdg-desktop-portal"
@@ -411,7 +413,7 @@ binds {
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ --limit 1.5"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
