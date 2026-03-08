@@ -23,8 +23,9 @@ gui-libs/xdg-desktop-portal-hyprland
 =dev-cpp/sdbus-c++-2.1.0 ~amd64
 gui-apps/wf-recorder
 
-media-fonts/maple-font
+media-fonts/maplemono
 media-fonts/nerd-fonts
+media-fonts/ioskeleymono
 app-text/tldr
 
 dev-games/godot
@@ -32,5 +33,21 @@ dev-games/recastnavigation
 net-libs/wslay
 
 gui-display/ly
+www-client/zen-bin
+
+gui-apps/swaync
+x11-themes/bibata-xcursors
+
+media-sound/cava
+app-misc/yazi 
+
+media-sound/kew
+
+
+net-proxy/wireproxy
+
+dev-util/rustup
+net-misc/yt-dlp ~amd64
+net-misc/gallery-dl ~amd64
 
 

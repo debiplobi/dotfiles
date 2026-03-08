@@ -2,38 +2,40 @@ general.live_config_reload = true
 
 # Font
 [font]
-size = 15.8
+size = 15
 
 # alacritty.toml
 
 [font.bold]
-family = "Maple Mono"
+# family = "Maple Mono"
+family = "Ioskeley Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "Maple Mono"
+# family = "Maple Mono"
+family = "Ioskeley Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "Maple Mono"
+# family = "Maple Mono"
+family = "Ioskeley Mono"
 style = "Italic"
 
 [font.normal]
-family = "Maple Mono"
+# family = "Maple Mono"
+family = "Ioskeley Mono"
 style = "Regular"
 
-
-
-
 [window]
-opacity = 0.85
+opacity = 1
 # decorations = "full"
 padding = { x = 10, y = 10 }
 
 # Kanagawa Wave Alacritty Colors
 
 [colors.primary]
-background = '#111111'
+# background = "#000000"
+background = "#111111"
 foreground = '#dddddd'
 
 # [colors.normal]

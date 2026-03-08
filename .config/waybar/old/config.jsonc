@@ -9,14 +9,15 @@
   "margin-bottom": 0,
 
   "modules-left": ["niri/workspaces", "niri/window"],
-  "modules-center": ["mpris"],
+  "modules-center": ["clock"],
   "modules-right": [
     "memory",
     "cpu",
+    "backlight",
     "custom/net_speed",
     "wireplumber",
+    "backlight",
     "battery",
-    "clock",
     "tray",
   ],
 
@@ -37,20 +38,10 @@
     "separate-outputs": true,
   },
 
-  "mpris": {
-    "player": "spotify",
-    "dynamic-order": ["artist", "title"],
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
-    "status-icons": { "paused": "" },
-    "player-icons": { "default": "" },
-    "max-length": 50,
-  },
-
   "clock": {
     "timezone": "Asia/Kolkata",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "󰥔 {:%I:%M %p   %d/%m/%Y}",
+    "format": "󰥔 {:%H:%M   %d/%m/%Y}",
     "format-alt": "󰸗 {:%A, %B %d, %Y}",
   },
   "cpu": {
@@ -73,7 +64,7 @@
     "on-click-right": "pkill gammastep",
   },
   "memory": {
-    "format": " {percentage}%",
+    "format": "Disk: {}%",
     "interval": 1,
   },
 

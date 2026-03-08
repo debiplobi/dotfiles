@@ -17,7 +17,8 @@ return {
 				"eslint",
 				"black",
 				"biome",
-				"gdtoolkit", -- Change "gdscript" to "gdtoolkit"
+        "astro"
+				-- "gdtoolkit", -- Change "gdscript" to "gdtoolkit"
 			},
 		},
 	},

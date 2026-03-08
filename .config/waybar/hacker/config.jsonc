@@ -1,0 +1,131 @@
+{
+  "layer": "top",
+  "position": "top",
+  // "height": 30,
+  // "spacing": 2,
+  // "exclusive": true,
+  // "gtk-layer-shell": true,
+  // "passthrough": false,
+  // "fixed-center": true,
+
+  "modules-left": ["niri/workspaces", "niri/window"],
+  "modules-center": ["mpris"],
+  "modules-right": [
+    "custom/net_speed",
+    "cpu",
+    "backlight",
+    "memory",
+    "wireplumber",
+    "clock",
+    "clock#simpleclock",
+    "battery",
+    "custom/notification",
+    "tray",
+  ],
+
+  "mpris": {
+    "player": "spotify",
+    "dynamic-order": ["artist", "title"],
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "status-icons": { "paused": "" },
+    "player-icons": { "default": "" },
+  },
+
+  "tray": {
+    "show-passive-items": true,
+    "spacing": 10,
+  },
+
+  "clock#simpleclock": {
+    "tooltip": false,
+    "format": " {:%H:%M}",
+  },
+
+  "clock": {
+    "format": " {:L%a %d %b}",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 1,
+      "on-scroll": 1,
+    },
+    "tooltip-format": "{calendar}",
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 1,
+  },
+
+  "memory": {
+    "format": " {percentage}%",
+  },
+
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 {volume}%",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"],
+    },
+    "on-click": "helvum",
+  },
+
+  "custom/net_speed": {
+    "exec": "~/.config/waybar/scripts/net_speed.sh",
+    "interval": 2,
+    "format": "{text}",
+  },
+
+  "custom/power": {
+    "tooltip": false,
+    "on-click": "wlogout -p layer-shell &",
+    "format": "⏻",
+  },
+
+  "custom/notification": {
+    "escape": true,
+    "exec": "swaync-client -swb",
+    "exec-if": "which swaync-client",
+    "format": "{icon}",
+    "format-icons": {
+      "none": "󰅺",
+      "notification": "󰡟",
+    },
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "return-type": "json",
+    "tooltip": false,
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󰛨"],
+  },
+}
+
+#tray {
+  padding: 1px 4px;
+  margin: 0 1px;
+
+  background: transparent;
+  border: 1px solid #006644;
+  border-radius: 4px;
+
+  color: #00ff88;
+}
+
+#tray menu {
+  background: #020502;
+  color: #00ff88;
+  border: 1px solid #006644;
+}

@@ -25,9 +25,9 @@ require("lazy").setup({
 	spec = {
 		-- import your plugins
 		-- { import = "plugins" },
-		-- { import = "plugins.themes" },
 		{ import = "plugins.core" },
 		{ import = "plugins.extras" },
+		{ import = "plugins.extras.js-ts-html-css" },
 	},
 
 	-- Configure any other settings here. See the documentation for more details.

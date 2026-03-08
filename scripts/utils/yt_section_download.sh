@@ -2,52 +2,57 @@
 set -e
 
 # --- CONFIG ---
-VIDEO_URL="https://www.youtube.com/watch?v=V2G1yd0XfrY"
-
+VIDEO_URL="https://youtu.be/46_5fd1uOSs?si=w3wOusQf7BJBw_fZ"
 SECTIONS=(
-  "00:00:45-00:01:29"
-  "00:04:10-00:04:55"
-  "00:10:30-00:12:20"
+  "00:00:00-00:00:42"
+  "00:10:25-00:14:00"
 )
 
-# --- ALWAYS use cookies ---
 YTDLP="yt-dlp --cookies-from-browser firefox"
-
-# Temp dir (auto-cleaned)
 TMP_DIR="$(mktemp -d)"
-
-# Get safe video title
 VIDEO_TITLE="$($YTDLP --print title "$VIDEO_URL" | sed 's/[\/:*?"<>|]/_/g')"
 FINAL_OUTPUT="${VIDEO_TITLE}.mp4"
-
 MERGE_LIST="$TMP_DIR/merge_list.txt"
 
 echo "🎬 Title : $VIDEO_TITLE"
 echo "📁 Temp  : $TMP_DIR"
 
-# Download sections
 for i in "${!SECTIONS[@]}"; do
   START_END="${SECTIONS[$i]}"
   INDEX=$(printf "%02d" $((i + 1)))
   OUTFILE="$TMP_DIR/clip_${INDEX}.mp4"
+  echo "⬇️  Clip $INDEX: $START_END"
 
-  echo "⬇️  $START_END"
+  # Retry up to 5 times with increasing sleep
+  for attempt in 1 2 3 4 5; do
+    echo "   attempt $attempt..."
+    $YTDLP \
+      --download-sections "*${START_END}" \
+      --merge-output-format mp4 \
+      --retries 10 \
+      --fragment-retries 10 \
+      --retry-sleep linear=1::2 \
+      --socket-timeout 30 \
+      --concurrent-fragments 1 \
+      -o "$OUTFILE" \
+      "$VIDEO_URL" && break
 
-  $YTDLP \
-    --download-sections "*${START_END}" \
-    --merge-output-format mp4 \
-    -o "$OUTFILE" \
-    "$VIDEO_URL"
+    echo "   ⚠️  Failed, waiting before retry..."
+    sleep $((attempt * 5))
+  done
+
+  if [[ ! -f "$OUTFILE" ]]; then
+    echo "❌ Failed to download clip $INDEX after 5 attempts. Aborting."
+    rm -rf "$TMP_DIR"
+    exit 1
+  fi
 
   echo "file '$OUTFILE'" >> "$MERGE_LIST"
 done
 
-# Merge
 echo "🔗 Merging → $FINAL_OUTPUT"
 ffmpeg -loglevel error -stats \
   -f concat -safe 0 -i "$MERGE_LIST" -c copy "$FINAL_OUTPUT"
 
-# Cleanup
 rm -rf "$TMP_DIR"
-
 echo "✅ Done → $FINAL_OUTPUT"

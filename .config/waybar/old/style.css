@@ -1,20 +1,20 @@
 /* Reset and font setup */
 * {
-  font-family: "0xProto Nerd Font";
-  font-size: 14px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13.5px;
 }
 
 /* Waybar window */
 window#waybar {
-  background-color: #111111;
-  color: #ccc;
+  background-color: #1e1e2e;
+  color: #282828;
   border-radius: 0;
   border: none;
 }
 
 /* Workspaces */
 #workspaces {
-  /* background: transparent; */
+  background: transparent;
   margin: 0 10px;
 }
 
@@ -44,17 +44,6 @@ window#waybar {
   margin: 0 15px;
 }
 
-#memory {
-  color: #cccccc;
-}
-
-#mpris {
-  color: #aaaaaa; /* white */
-  font-weight: bold;
-  padding: 0 15px;
-  font-size: 12px;
-}
-
 /* Clock */
 #clock {
   color: #aaaaaa; /* white */
@@ -68,20 +57,51 @@ window#waybar {
 #pulseaudio,
 #wireplumber,
 #backlight,
-#mpris,
-#memory,
 #custom-net_speed,
 #battery {
   padding: 0 5px;
   margin: 0 5px;
 }
 
+/* Individual modules */
+#cpu {
+  color: #aaa; /* gray */
+}
+
+#custom-net_speed {
+  color: #aaa; /* gray */
+}
+
+#network {
+  color: #aaa; /* white */
+}
+
 #network.disconnected {
   color: #999999; /* black */
 }
 
+#wireplumber {
+  color: #dddddd; /* light gray */
+}
+
 #wireplumber.muted {
   color: #999999; /* black */
+}
+
+#pulseaudio {
+  color: #dddddd; /* light gray */
+}
+
+#pulseaudio.muted {
+  color: #999999; /* black */
+}
+
+#backlight {
+  color: #aaa; /* gray */
+}
+
+#battery {
+  color: #aaa; /* white */
 }
 
 #battery.charging {

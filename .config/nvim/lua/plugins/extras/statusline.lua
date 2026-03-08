@@ -70,7 +70,7 @@ return {
     vim.cmd([[hi VimIcon guifg=#5fd700 guibg=#202328]])
 		vim.cmd([[hi StalineEnc  guifg=#7d9955 guibg=#202328]])
 		vim.cmd([[hi StalineGit guifg=#c37cda guibg=#202328]])
-		vim.cmd([[hi StalineFile guifg=#c37cda guibg=#202328]])
+		vim.cmd([[hi StalineFile guifg=#8839ef guibg=#202328]])
 
 		-- vim.cmd([[hi StalineEnc guifg=#7c5cff guibg=#202328]])
 	end,

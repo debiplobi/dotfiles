@@ -34,6 +34,8 @@ return {
 				-- blade = { "blade-formatter" },
 				-- php = { "php-cs-fixer" },
 				gdscript = { "gdformat" }, -- Use gdformat from gdtoolkit
+
+				astro = { "biome-check" },
 			},
 		},
 
