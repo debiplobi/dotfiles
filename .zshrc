@@ -32,7 +32,7 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1; zinit light sindresorhus/pure
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -145,3 +145,4 @@ export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local
 
 
 setopt NO_NOMATCH
+export PATH="$HOME/go/bin:$PATH"

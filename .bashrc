@@ -1,8 +1,15 @@
 #
 # ~/.bashrc
+# Android Studio
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 #Cargo stuff
 export PATH="$HOME/.cargo/bin:$PATH"
+
+#Pipx stuff
+export PATH="$HOME/.local/bin:$PATH"
 
 #yarn stuff
 export PATH="$HOME/.yarn/bin:$PATH"
@@ -29,4 +36,18 @@ export ZXCVBN_MAX_LENGTH=150
 export PATH="$PATH:/home/debnation/.local/bin"
 export PATH="/home/debnation/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/debnation/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+export PATH="/home/endofnation/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/endofnation/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+# pnpm
+export PNPM_HOME="/home/endofnation/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
+#
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
 
