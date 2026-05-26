@@ -26,7 +26,7 @@ monitor=eDP-1,1920x1080,auto,1
 # Set programs that you use
 $terminal = alacritty 
 # $fileManager = dolphin
-$menu = wofi --show drun 
+$menu = fuzzel  
 # && dbxcli get KeePassXC/Passwords.kdbx ~/Passwords/
 
 
@@ -51,6 +51,8 @@ exec-once = ~/.cargo/bin/notify-usb
 # exec-once = ~/.cargo/bin/keepassDBSync 
 exec-once = XDG_MENU_PREFIX=arch- kbuildsycoca6 
 exec-once = gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+exec-once = ~/.config/hypr/xdg-portal-hyprland
+
 
 
 #############################
@@ -61,6 +63,10 @@ exec-once = gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
+env = XDG_CURRENT_DESKTOP, Hyprland
+env = XDG_SESSION_TYPE, wayland
+env = XDG_SESSION_DESKTOP, Hyprland
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
 
 ###################

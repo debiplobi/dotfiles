@@ -2,20 +2,28 @@
 set -e
 
 # --- CONFIG ---
-VIDEO_URL="https://youtu.be/46_5fd1uOSs?si=w3wOusQf7BJBw_fZ"
+VIDEO_URL="url"
 SECTIONS=(
-  "00:00:00-00:00:42"
-  "00:10:25-00:14:00"
+  "00:00:52-00:01:48"
+  "00:05:34-00:06:22"
+  "00:11:41-00:11:49"
 )
 
 YTDLP="yt-dlp --cookies-from-browser firefox"
 TMP_DIR="$(mktemp -d)"
-VIDEO_TITLE="$($YTDLP --print title "$VIDEO_URL" | sed 's/[\/:*?"<>|]/_/g')"
-FINAL_OUTPUT="${VIDEO_TITLE}.mp4"
+
+# Extracting title and ID separately to format the final filename
+RAW_TITLE="$($YTDLP --print title "$VIDEO_URL" | sed 's/[\/:*?"<>|]/_/g')"
+VIDEO_ID="$($YTDLP --print id "$VIDEO_URL")"
+
+# New filename format: Title [ID]_edited.mp4
+FINAL_OUTPUT="${RAW_TITLE} [${VIDEO_ID}]_edited.mp4"
 MERGE_LIST="$TMP_DIR/merge_list.txt"
 
-echo "🎬 Title : $VIDEO_TITLE"
-echo "📁 Temp  : $TMP_DIR"
+echo "🎬 Title  : $RAW_TITLE"
+echo "🆔 ID     : $VIDEO_ID"
+echo "📁 Temp   : $TMP_DIR"
+echo "📦 Output : $FINAL_OUTPUT"
 
 for i in "${!SECTIONS[@]}"; do
   START_END="${SECTIONS[$i]}"
@@ -51,8 +59,9 @@ for i in "${!SECTIONS[@]}"; do
 done
 
 echo "🔗 Merging → $FINAL_OUTPUT"
+# Added -bsf:a opus_metadata to handle the Opus header errors common in YouTube cuts
 ffmpeg -loglevel error -stats \
-  -f concat -safe 0 -i "$MERGE_LIST" -c copy "$FINAL_OUTPUT"
+  -f concat -safe 0 -i "$MERGE_LIST" -c copy -bsf:a opus_metadata "$FINAL_OUTPUT"
 
 rm -rf "$TMP_DIR"
 echo "✅ Done → $FINAL_OUTPUT"

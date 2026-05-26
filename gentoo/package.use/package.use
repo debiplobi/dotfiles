@@ -1,42 +1,39 @@
-sys-kernel/installkernel grub dracut
-
+sys-kernel/installkernel systemd-boot dracut systemd -grub
+sys-kernel/gentoo-kernel-bin modules-compress
 x11-libs/libdrm video_cards_radeon
-
 media-video/pipewire sound-server dbus v4l
 media-sound/pulseaudio -daemon
-
 x11-drivers/nvidia-drivers kernel-open tools modules-compress
-
 gnome-base/gvfs mtp udisks policykit fuse keyring
-
 net-vpn/wireguard-tools wg-quick
-
 media-fonts/nerd-fonts jetbrainsmono 0xproto nerdfontssymbolsonly
-
 sys-boot/grub mount
-
 net-misc/networkmanager modemanager tools
-
 gui-apps/waybar tray mpris niri
 gnome-extra/nm-applet appindicator
 
-# required by app-misc/ani-cli-4.10::guru
-# required by ani-cli (argument)
+# required by ani-cli
 net-misc/aria2 adns
 
 media-video/ffmpeg nvidia nvenc cuda encode x264 x265 mp3 opus vorbis vpx vaapi
-
 media-video/obs-studio lua nvenc speex v4l wayland pipewire
-
 mpv-plugin/mpv-mpris autoload
 
-
-
-# required by gui-apps/swaync-0.12.4::guru
-# required by =gui-apps/swaync-0.12.4 (argument)
->=gui-libs/gtk4-layer-shell-1.1.1-r1 vala introspection
-
+# required by gui-apps/swaync 
+gui-libs/gtk4-layer-shell vala introspection
 
 dev-lang/rust-bin rustfmt
 www-apps/hugo extended
+media-libs/freetype brotli
 
+# required for systemd-boot 
+sys-apps/systemd-utils udev boot kernel-install 
+
+dev-util/ostree -grub
+sys-boot/woeusb-ng -gui
+
+# This Fixes Ly display manager showing error 
+net-misc/networkmanager -modemmanager
+gnome-extra/nm-applet -modemmanager
+gnome-base/gnome-settings-daemon -modemmanager
+media-video/pipewire -modemmanager

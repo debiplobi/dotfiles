@@ -1,7 +1,9 @@
 /* Reset and font setup */
 * {
   font-family: "0xProto Nerd Font";
-  font-size: 14px;
+  font-size: 13px;
+  padding-bottom:2px;
+  padding-top:2px;
 }
 
 /* Waybar window */
@@ -71,6 +73,8 @@ window#waybar {
 #mpris,
 #memory,
 #custom-net_speed,
+#custom-gpu-usage,
+#custom-cpu-usage,
 #battery {
   padding: 0 5px;
   margin: 0 5px;

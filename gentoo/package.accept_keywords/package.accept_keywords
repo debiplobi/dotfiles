@@ -1,53 +1,52 @@
-gui-wm/niri
-gui-apps/fuzzel
-gui-apps/xwayland-satellite
-net-im/telegram-desktop-bin
-net-im/vesktop-bin
-app-misc/brightnessctl
-sys-boot/woeusb-ng
-gui-apps/awww
-media-fonts/nerdfonts
-x11-misc/ly
-dev-util/android-studio
-app-misc/cliphist
-app-misc/ani-cli
-dev-util/nvidia-cuda-toolkit
-net-ftp/vsftpd
-www-apps/zola
-dev-vcs/lazygit
-net-proxy/ngrok-bin
-media-video/obs-studio
+# Niri
+gui-wm/niri ~amd64
+gui-apps/fuzzel ~amd64
+gui-apps/xwayland-satellite ~amd64
+app-misc/brightnessctl ~amd64
+gui-apps/awww ~amd64
+x11-misc/ly ~amd64
+app-misc/cliphist ~amd64
+
+dev-util/android-studio ~amd64
+app-misc/ani-cli ~amd64
+sys-boot/woeusb-ng ~amd64
+net-ftp/vsftpd ~amd64
+www-apps/zola ~amd64
+dev-vcs/lazygit ~amd64
+net-proxy/ngrok-bin ~amd64
+media-video/obs-studio ~amd64
+dev-util/nvidia-cuda-toolkit ~amd64
+net-im/telegram-desktop-bin ~amd64
+net-im/vesktop-bin ~amd64
+
 gui-libs/xdg-desktop-portal-hyprland
 # required by gui-libs/xdg-desktop-portal-hyprland-1.3.11::guru
 # required by gui-libs/xdg-desktop-portal-hyprland (argument)
 =dev-cpp/sdbus-c++-2.1.0 ~amd64
-gui-apps/wf-recorder
 
-media-fonts/maplemono
-media-fonts/nerd-fonts
-media-fonts/ioskeleymono
-app-text/tldr
-
-dev-games/godot
-dev-games/recastnavigation
-net-libs/wslay
-
-gui-display/ly
-www-client/zen-bin
-
-gui-apps/swaync
-x11-themes/bibata-xcursors
-
-media-sound/cava
-app-misc/yazi 
-
-media-sound/kew
-
-
-net-proxy/wireproxy
-
-dev-util/rustup
+gui-apps/wf-recorder ~amd64
+media-fonts/maplemono ~amd64
+media-fonts/nerd-fonts ~amd64
+media-fonts/ioskeleymono ~amd64
+app-text/tldr ~amd64
+dev-games/godot ~amd64
+dev-games/recastnavigation ~amd64
+net-libs/wslay ~amd64
+www-client/zen-bin ~amd64
+gui-apps/swaync ~amd64
+media-sound/cava ~amd64
+app-misc/yazi ~amd64
+net-proxy/wireproxy ~amd64
+dev-util/rustup ~amd64
 net-misc/yt-dlp ~amd64
 net-misc/gallery-dl ~amd64
-
+app-misc/lf ~amd64
+x11-terms/wezterm
+media-video/davinci-resolve ~amd64
+www-client/helium-bin ~amd64
+gui-apps/waylock ~amd64
+sys-fs/jmtpfs ~amd64
+dev-lang/zig-bin ~amd64
+gui-apps/sway-audio-idle-inhibit ~amd64
+gui-apps/wlopm ~amd64
 

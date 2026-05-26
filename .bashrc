@@ -1,5 +1,7 @@
 #
 # ~/.bashrc
+#
+
 # Android Studio
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -12,6 +14,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 #yarn stuff
+export PATH="$HOME/.yarn/bin:$PATH"
+
+
+# ~/.local/bin/claude
+# Claude Code
+export PATH="$HOME/.local/bin:$PATH"
+
 export PATH="$HOME/.yarn/bin:$PATH"
 
 # If not running interactively, don't do anything
@@ -51,3 +60,9 @@ esac
 #
 export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
 
+
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
+
+
+export EDITOR=nvim
+. "$HOME/.cargo/env"

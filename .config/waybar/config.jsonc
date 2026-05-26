@@ -11,8 +11,10 @@
   "modules-left": ["niri/workspaces", "niri/window"],
   "modules-center": ["mpris"],
   "modules-right": [
-    "memory",
-    "cpu",
+    "custom/gpu-usage",
+    "custom/cpu-usage",
+    // "memory",
+    // "cpu",
     "custom/net_speed",
     "wireplumber",
     "battery",
@@ -50,7 +52,7 @@
   "clock": {
     "timezone": "Asia/Kolkata",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "󰥔 {:%I:%M %p   %d/%m/%Y}",
+    "format": "󰥔 {:%I:%M %p  | %d/%m/%Y} |",
     "format-alt": "󰸗 {:%A, %B %d, %Y}",
   },
   "cpu": {
@@ -87,12 +89,12 @@
   "custom/net_speed": {
     "exec": "~/.config/waybar/scripts/net_speed.sh",
     "interval": 2,
-    "format": "{text}",
+    "format": "| {text} |",
     "tooltip": false,
   },
 
   "wireplumber": {
-    "format": "{icon} {volume}%",
+    "format": "{icon} {volume}% |",
     "format-muted": "󰖁 {volume}%",
     "format-icons": {
       "headphone": "󰋋",
@@ -119,7 +121,7 @@
       "warning": 30,
       "critical": 15,
     },
-    "format": "{icon} {capacity}%",
+    "format": "{icon} {capacity}% |",
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": "󰚥 {capacity}%",
     "format-alt": "{icon} {time}",
@@ -152,5 +154,16 @@
     "icon-size": 16,
     "spacing": 8,
     "passive-items": true,
+  },
+  "custom/gpu-usage": {
+    "exec": "~/.config/waybar/scripts/gpu_usage.sh",
+    "return-type": "json",
+    "interval": 2,
+  },
+
+  "custom/cpu-usage": {
+    "exec": "~/.config/waybar/scripts/cpu_usage.sh",
+    "return-type": "json",
+    "interval": 2,
   },
 }
