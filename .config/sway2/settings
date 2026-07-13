@@ -1,0 +1,33 @@
+# Modifier key
+# set $mod Mod1
+# Direction keys
+# set $left a
+# set $down s
+# set $up w
+# set $right d
+
+# Terminal emulator
+# set $term alacritty
+# Application launcher
+# set $menu 'rofi -show drun'
+# Web browser
+# set $web 'flatpak run io.gitlab.librewolf-community'
+# Graphical file browser
+# set $file_browser thunar
+
+# Colors
+set $accent #afa193
+set $bg #101010
+set $bg-alt #252525
+set $fg #f6f1ea
+
+# GTK theme settings
+set $font "Noto Sans Regular 12"
+set $monospace_font "JetBrainsMono Nerd Font 12"
+set $icon_theme "Papirus-Dark"
+set $gtk_theme "Arc-dark"
+set $cursor_theme "Adwaita"
+set $cursor_size 24
+
+# Font
+font pango: JetBrainsMono Nerd Font 16
