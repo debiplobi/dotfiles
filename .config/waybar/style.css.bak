@@ -1,18 +1,13 @@
 /* Reset and font setup */
 * {
-  font-family: "DejaVuSansMNerdFont";
-  font-weight: bold;
-  font-size: 10px;
-  padding: 0;
-  margin: 0;
+  font-family: "0xProto Nerd Font";
+  font-size: 13px;
 }
 
 /* Waybar window */
 window#waybar {
-  padding: 0;
-  margin: 0;
-  background-color: #000000;
-  color: #fff;
+  background-color: #111111;
+  color: #ccc;
   border-radius: 0;
   border: none;
 }
@@ -20,21 +15,23 @@ window#waybar {
 /* Workspaces */
 #workspaces {
   /* background: transparent; */
-  margin: 0 0px;
+  margin: 0 5px;
 }
 
 #workspaces button {
-  padding-right: 5px;
+  padding: 0 0px;
+  /* background: #282828; */
+  color: #aaaaaa; /* gray */
   border: none;
-  color: #888888;
 }
 
 #workspaces button.active {
-  color: #fff; /* black */
+  color: #fff; /* white */
 }
 
 #workspaces button.focused {
-  color: #00ff00; /* white */
+  color: #fff; /* black */
+  background-color: #282828; /* white background */
 }
 
 #workspaces button:hover {
@@ -44,10 +41,28 @@ window#waybar {
 /* Window title */
 #window {
   color: #cccccc; /* light gray */
+  margin: 0 15px;
+}
+
+#memory {
+  color: #cccccc;
+}
+
+#mpris {
+  color: #aaaaaa; /* white */
+  font-weight: bold;
+  padding: 0 15px;
+  font-size: 12px;
+}
+
+/* Clock */
+#clock {
+  color: #aaaaaa; /* white */
+  font-weight: bold;
+  padding: 0 15px;
 }
 
 /* Right modules common styling */
-#clock,
 #cpu,
 #network,
 #pulseaudio,
@@ -82,5 +97,4 @@ window#waybar {
 /* Tray */
 #tray {
   padding: 0 8px;
-  color: #02f02f
 }

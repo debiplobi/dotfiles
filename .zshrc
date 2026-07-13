@@ -73,3 +73,10 @@ esac
 export EDITOR=nvim
 source "$HOME/.cargo/env"
 fastfetch
+
+# bun completions
+[ -s "/home/endofnation/.bun/_bun" ] && source "/home/endofnation/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
