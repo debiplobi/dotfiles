@@ -1,12 +1,12 @@
 #!/bin/bash
-# Get data from nvtop
 DATA=$(nvtop -s)
 
-# Extract values
-AMD_LOAD=$(echo "$DATA" | jq -r '.[0].gpu_util' | tr -d '%')
-NVI_LOAD=$(echo "$DATA" | jq -r '.[1].gpu_util' | tr -d '%')
-AMD_TEMP=$(echo "$DATA" | jq -r '.[0].temp' | tr -d 'C')
-NVI_TEMP=$(echo "$DATA" | jq -r '.[1].temp' | tr -d 'C')
+AMD_JSON=$(echo "$DATA" | jq -c '[.[] | select(.device_name | test("AMD"; "i"))][0]')
+NVI_JSON=$(echo "$DATA" | jq -c '[.[] | select(.device_name | test("NVIDIA"; "i"))][0]')
 
-# Output as Waybar-ready JSON
-echo "{\"text\": \"  AMD: ${AMD_LOAD}% [${AMD_TEMP}°C] | NVD: ${NVI_LOAD}% [${NVI_TEMP}°C]\", \"tooltip\": \"AMD Usage: ${AMD_LOAD}%\\nNvidia Usage: ${NVI_LOAD}%\"}"
+AMD_LOAD=$(echo "$AMD_JSON" | jq -r '.gpu_util' | tr -d '%')
+NVI_LOAD=$(echo "$NVI_JSON" | jq -r '.gpu_util' | tr -d '%')
+AMD_TEMP=$(echo "$AMD_JSON" | jq -r '.temp' | tr -d 'C')
+NVI_TEMP=$(echo "$NVI_JSON" | jq -r '.temp' | tr -d 'C')
+
+echo "{\"text\": \" AMD: ${AMD_LOAD}% | NVD: ${NVI_LOAD}% \", \"tooltip\": \"AMD Usage: ${AMD_LOAD}%\\nNvidia Usage: ${NVI_LOAD}%\"}"

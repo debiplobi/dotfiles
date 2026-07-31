@@ -1,86 +1,93 @@
-/* Reset and font setup */
+@define-color background #282828;
+@define-color second-background #3C3836;
+@define-color text #EBDBB2;
+@define-color focused #A0907A;
+@define-color focused2 #BFAA80;
+@define-color color1 #7699A3;
+@define-color color2 #8D7AAE;
+@define-color color3 #78997A;
+@define-color urgent #B05A5A;
+
 * {
-  font-family: "DejaVuSansMNerdFont";
-  font-weight: bold;
+  font-family: "Adwaita Mono";
   font-size: 10px;
-  padding: 0;
-  margin: 0;
 }
 
-/* Waybar window */
-window#waybar {
-  padding: 0;
-  margin: 0;
-  background-color: #000000;
-  color: #fff;
-  border-radius: 0;
-  border: none;
-}
-
-/* Workspaces */
-#workspaces {
-  /* background: transparent; */
-  margin: 0 0px;
-}
-
-#workspaces button {
-  padding-right: 5px;
-  border: none;
-  color: #888888;
-}
-
-#workspaces button.active {
-  color: #fff; /* black */
-}
-
-#workspaces button.focused {
-  color: #00ff00; /* white */
-}
-
-#workspaces button:hover {
-  color: #ffffff; /* white */
-}
-
-/* Window title */
-#window {
-  color: #cccccc; /* light gray */
-}
-
-/* Right modules common styling */
-#clock,
-#cpu,
-#network,
-#pulseaudio,
-#wireplumber,
-#backlight,
-#mpris,
-#memory,
-#custom-net_speed,
-#custom-gpu-usage,
-#custom-cpu-usage,
-#battery {
-  padding: 0 5px;
+#custom-openbracket,
+#custom-closebracket {
   margin: 0 5px;
 }
 
-#network.disconnected {
-  color: #999999; /* black */
+window#waybar {
+  background-color: @background;
+  /* border-top: 1px solid @text; */
+  color: @text;
+  transition: background-color 0.5s;
 }
 
-#wireplumber.muted {
-  color: #999999; /* black */
+window#waybar.hidden {
+  opacity: 0.2;
 }
 
-#battery.charging {
-  color: #fff; /* light gray */
+window#waybar.empty #window {
+  background-color: transparent;
 }
 
-#battery.critical {
-  color: darkred; /* black */
+.modules-left {
+  padding: 0 7px 0 7px;
+  background-color: @background;
+  /* border-top: 1px solid @text; */
 }
 
-/* Tray */
+.modules-center {
+  padding: 0 7px 0 7px;
+  background-color: @background;
+  /* border-top: 1px solid @text; */
+}
+
+.modules-right {
+  padding: 0 7px 0 7px;
+  background-color: @background;
+  /* border-top: 1px solid @text; */
+}
+
+#custom-artix {
+  padding-right: 11px;
+  padding-left: 5px;
+  font-size: 15px;
+  border-radius: 8px;
+}
+
+#workspaces button {
+  all: unset;
+  min-width: 0;
+  padding: 0 5px;
+  background-color: transparent;
+  color: @text;
+  border-radius: 0;
+}
+
+#workspaces button.active {
+  color: @text;
+  font-weight: 600;
+  background-color: @background;
+}
+
+#mpris {
+  margin: 0 0 0 0;
+  padding: 0 9px;
+  background-color: @background;
+  color: @text;
+}
+
+#window,
 #tray {
-  padding: 0 8px;
-  color: #02f02f
+  padding: 0 5px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory {
+  padding: 0 5px;
 }

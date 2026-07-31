@@ -1,9 +1,40 @@
-# Load completions
-autoload -Uz compinit && compinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+
+# Load OMZ libs we need (not the whole thing)
+zinit snippet OMZL::git.zsh
+zinit snippet OMZL::directories.zsh
+zinit snippet OMZL::theme-and-appearance.zsh
+zinit snippet OMZL::async_prompt.zsh
+
+# eza config - must be set BEFORE loading the plugin
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'git-status' yes
+zstyle ':omz:plugins:eza' 'header' yes
+zstyle ':omz:plugins:eza' 'icons' yes
+
+# Load OMZ plugins
+zinit snippet OMZP::git
+zinit snippet OMZP::eza
+
+# Zsh plugins
+# zinit light zsh-users/zsh-syntax-highlighting
+# zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# Load completions efficiently (after prompt is ready)
+autoload -Uz compinit
+compinit
+
+
+
 # History
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
+HISTSIZE=10000
 SAVEHIST=$HISTSIZE
+HISTFILE=$HOME/.zsh_history
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
@@ -12,8 +43,10 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+
+
 # Aliases
-alias ls='ls --color'
+# alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 alias grep='grep --color=auto'
@@ -71,7 +104,7 @@ esac
 # pnpm end
 #
 export EDITOR=nvim
-source "$HOME/.cargo/env"
+# source "$HOME/.cargo/env"
 fastfetch
 
 # bun completions
@@ -80,3 +113,11 @@ fastfetch
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+# fnm
+FNM_PATH="/home/tinkerist/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell bash)"
+fi

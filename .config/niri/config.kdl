@@ -3,11 +3,12 @@
 // Check the wiki for a full description of the configuration:
 // https://yalter.github.io/niri/Configuration:-Introduction
 include "autostart.kdl"
-include "layout.kdl"
+include "animation.kdl"
 include "input.kdl"
 include "keybinds.kdl"
+include "layout.kdl"
+include "output.kdl"
 include "window-rules.kdl"
-include "animation.kdl"
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -17,8 +18,8 @@ environment {
 
 }
 cursor {
-  xcursor-theme "DMZ-White"
-  xcursor-size 25
+  xcursor-theme "breeze_cursors"
+  xcursor-size 24
   hide-when-typing
   hide-after-inactive-ms 1000
 }
@@ -53,6 +54,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 
 debug {
-    render-drm-device "/dev/dri/renderD129"
+    ignore-drm-device "/dev/dri/renderD129"
+    render-drm-device "/dev/dri/renderD128"
+    // #disable-resize-throttling
 }
 

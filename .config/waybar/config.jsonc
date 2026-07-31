@@ -1,169 +1,198 @@
 {
-  "layer": "top",
+  "output": ["HDMI-A-1"],
   "position": "bottom",
-  "height": 1,
-  "spacing": 0,
-  "margin-top": 0,
-  "margin-left": 0,
-  "margin-right": 0,
-  "margin-bottom": 0,
+  "height": 30,
+  "spacing": 5,
 
-  "modules-left": ["niri/workspaces", "niri/window"],
-  "modules-center": ["mpris"],
+  "modules-left": ["group/workspaces", "group/music"],
+
+  "modules-center": ["group/windows"],
+
   "modules-right": [
-    "custom/gpu-usage",
-    "custom/cpu-usage",
-    // "memory",
-    // "cpu",
-    "custom/net_speed",
-    "wireplumber",
-    "battery",
-    "clock",
-    "tray",
+    "group/internet_speed",
+    "group/gpus",
+    "group/cpuram",
+    "group/sound",
+    "group/system",
+    "group/tray-box",
   ],
 
-  "hyprland/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": true,
-    "format": "{icon}",
-    "format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
-    },
+  "custom/openbracket": {
+    "format": "[",
+    "tooltip": false,
   },
 
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 50,
-    "separate-outputs": true,
+  "custom/closebracket": {
+    "format": "]",
+    "tooltip": false,
   },
 
-  "mpris": {
-    "player": "spotify",
-    "dynamic-order": ["artist", "title"],
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
-    "status-icons": { "paused": "" },
-    "player-icons": { "default": "" },
-    "max-length": 50,
+  "custom/split": {
+    "format": "|",
+    "tooltip": false,
   },
 
-  "clock": {
-    "timezone": "Asia/Kolkata",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "󰥔 {:%I:%M %p  | %d/%m/%Y} |",
-    "format-alt": "󰸗 {:%A, %B %d, %Y}",
-  },
-  "cpu": {
-    "format": "  {usage}% ",
-    "tooltip": true,
-    "tooltip-format": "CPU Usage: {usage}%\nLoad: {load}",
-    "interval": 2,
-    "max-length": 10,
-    "on-click": "htop",
-  },
-
-  "custom/night": {
-    "icon-size": 16,
-    "format": "  ",
-    "margin-top": 0,
-    "margin-bottom": 0,
-    "margin-left": 0,
-    "margin-right": 0,
-    "on-click": "gammastep -O 5000 &",
-    "on-click-right": "pkill gammastep",
-  },
-  "memory": {
-    "format": " {percentage}%",
-    "interval": 1,
-  },
-
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-    "critical-threshold": 80,
-    "format": " {temperatureC}°C ",
-    "interval": 1,
+  "group/music": {
+    "orientation": "horizontal",
+    "modules": ["custom/openbracket", "mpris", "custom/closebracket"],
   },
 
   "custom/net_speed": {
     "exec": "~/.config/waybar/scripts/net_speed.sh",
-    "interval": 2,
-    "format": "| {text} |",
+    "interval": 1,
+    "format": "{text}",
     "tooltip": false,
   },
 
-  "wireplumber": {
-    "format": "{icon} {volume}% |",
-    "format-muted": "󰖁 {volume}%",
-    "format-icons": {
-      "headphone": "󰋋",
-      "hands-free": "󱡏",
-      "headset": "󰋎",
-      "phone": "󰏲",
-      "portable": "󰦢",
-      "car": "󰄋",
-      "default": ["󰕿", "󰖀", "󰕾"],
-    },
-    "on-click": "helvum",
-    "tooltip-format": "Volume: {volume}%",
+  "group/internet_speed": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/openbracket",
+      "custom/net_speed",
+      "custom/closebracket",
+    ],
   },
 
-  "backlight": {
-    "format": "{icon} {percent}%",
-    "format-icons": ["󰃞", "󰃟", "󰃠", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󰛨"],
-    "tooltip-format": "Brightness: {percent}%",
-  },
-
-  "battery": {
-    "states": {
-      "good": 95,
-      "warning": 30,
-      "critical": 15,
-    },
-    "format": "{icon} {capacity}% |",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󰚥 {capacity}%",
-    "format-alt": "{icon} {time}",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "tooltip-format": "{capacity}% - {time}",
-  },
-
-  "custom/swaync": {
-    "tooltip": false,
-    "format": "{icon}",
-    "format-icons": {
-      "notification": "󱅫 ",
-      "none": "󰂚 ",
-      "dnd-notification": "󱏧 <span foreground='red'><sup></sup></span>",
-      "dnd-none": "󱏧 ",
-      "inhibited-notification": "󰂚 <span foreground='red'><sup></sup></span>",
-      "inhibited-none": "󰂚 ",
-      "dnd-inhibited-notification": " <span foreground='red'><sup></sup></span>",
-      "dnd-inhibited-none": "󱏧 ",
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "~/.config/swaync/scripts/open-tray.sh",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true,
-  },
-
-  "tray": {
-    "icon-size": 16,
-    "spacing": 8,
-    "passive-items": true,
-  },
   "custom/gpu-usage": {
     "exec": "~/.config/waybar/scripts/gpu_usage.sh",
     "return-type": "json",
     "interval": 2,
   },
 
-  "custom/cpu-usage": {
-    "exec": "~/.config/waybar/scripts/cpu_usage.sh",
-    "return-type": "json",
+  "group/gpus": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/openbracket",
+      "custom/gpu-usage",
+      "custom/closebracket",
+    ],
+  },
+
+  "wireplumber": {
+    "format": "vol {volume}% ",
+    "format-muted": "muted {volume}%",
+    // "format-icons": {
+    //   "headphone": "󰋋",
+    //   "hands-free": "󱡏",
+    //   "headset": "󰋎",
+    //   "phone": "󰏲",
+    //   "portable": "󰦢",
+    //   "car": "󰄋",
+    //   "default": ["󰕿", "󰖀", "󰕾"],
+    // },
+    "on-click": "helvum",
+    "tooltip-format": "Volume: {volume}%",
+  },
+
+  "group/sound": {
+    "orientation": "horizontal",
+    "modules": ["custom/openbracket", "wireplumber", "custom/closebracket"],
+  },
+
+  "group/utilities": {
+    "orientation": "horizontal",
+    "modules": ["custom/openbracket", "custom/artix", "custom/closebracket"],
+  },
+
+  "custom/artix": {
+    "format": "\uf31f",
+    "tooltip": false,
+    "on-click": "rofi -show drun -no-show-icons",
+  },
+
+  "group/workspaces": {
+    "orientation": "horizontal",
+    "modules": ["custom/openbracket", "ext/workspaces", "custom/closebracket"],
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+  },
+
+  "mpris": {
+    "format": "  {status_icon} | {dynamic}",
+    "interval": 1,
+    "dynamic-len": 40,
+    "status-icons": {
+      "playing": "▶",
+      "paused": "⏸",
+      "stopped": "",
+    },
+    "dynamic-order": ["artist"],
+  },
+
+  "group/windows": {
+    "orientation": "horizontal",
+    "modules": ["custom/openbracket", "hyprland/window", "custom/closebracket"],
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 20,
+    "min-length": 0,
+    "all-outputs": true,
+  },
+
+  "group/cpuram": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/openbracket",
+      "cpu",
+      "custom/split",
+      "memory",
+      "custom/closebracket",
+    ],
+  },
+
+  "cpu": {
+    "format": "cpu {usage}%",
+    "tooltip": false,
     "interval": 2,
+    "on-click": "kitty -e btop",
+  },
+
+  "memory": {
+    "format": "ram {}%",
+    "tooltip": false,
+    "interval": 2,
+    "on-click": "kitty -e btop",
+  },
+
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/openbracket",
+      "clock",
+      "custom/split",
+      "battery",
+      "custom/closebracket",
+    ],
+  },
+
+  "clock": {
+    "format": "time {:%H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+
+  "battery": {
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "bat: {capacity}% {icon}",
+    "format-full": "bat full",
+    // "format-icons": ["", "", "", "", ""],
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 10,
+  },
+
+  "group/tray-box": {
+    "orientation": "horizontal",
+    "modules": ["custom/openbracket", "tray", "custom/closebracket"],
   },
 }

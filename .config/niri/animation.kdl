@@ -10,7 +10,7 @@ Notes:
 */
 
 animations {
-  off
+  on
     // Uncomment while tuning.
     slowdown 1
 

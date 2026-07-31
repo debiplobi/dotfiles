@@ -146,4 +146,89 @@ configuration {
   }
 }
 
-@theme "~/.config/rofi/themes/grimm.rasi"
+* {
+    bg:      #111111;
+    bg2:     #1b1b1b;
+    border:  #504945;
+    fg:      #ebdbb2;
+    fg2:     #111111;
+
+    background-color: transparent;
+    text-color: @fg;
+    font: "JetBrainsMono Nerd Font Propo 12";
+}
+
+configuration {
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+    show-icons: true;
+}
+
+window {
+    background-color: @bg;
+    border: 2px;
+    border-color: @border;
+    border-radius: 8px;
+    width: 480px;
+    padding: 10px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing: 8px;
+}
+
+inputbar {
+    background-color: @bg2;
+    border: 1px;
+    border-color: @border;
+    border-radius: 6px;
+    padding: 8px 12px;
+
+    children: [entry];
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg;
+    placeholder: "Search...";
+    placeholder-color: #7c6f64;
+}
+
+listview {
+    background-color: transparent;
+    spacing: 4px;
+    lines: 8;
+    scrollbar: false;
+}
+
+element {
+    background-color: transparent;
+    border-radius: 2px;
+    padding: 4px 8px;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @border;
+    text-color: @fg;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element-icon {
+    margin: 0 8px 0 0;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: @fg;
+}
+
