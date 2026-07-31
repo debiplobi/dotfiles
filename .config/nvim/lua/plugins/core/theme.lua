@@ -1,89 +1,41 @@
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
-	lazy = false, -- load immediately
-	priority = 1000, -- load before other UI plugins
+	"ellisonleao/gruvbox.nvim",
+	name = "gruvbox",
+	lazy = false,
+	priority = 1000,
+
 	opts = {
-		flavour = "mocha", -- latte, frappe, macchiato, mocha
-		background = {
-			light = "latte",
-			dark = "mocha",
+		terminal_colors = true,
+		undercurl = true,
+		underline = true,
+		bold = true,
+		italic = {
+			strings = false,
+			emphasis = true,
+			comments = true,
+			operators = false,
+			folds = true,
 		},
-		transparent_background = true,
+		strikethrough = true,
 
-		float = {
-			transparent = false,
-			solid = false,
-		},
+		invert_selection = false,
+		invert_signs = false,
+		invert_tabline = false,
+		invert_intend_guides = false,
+		inverse = true,
 
-		show_end_of_buffer = false,
+		contrast = "hard", -- soft, medium, hard
 
-		dim_inactive = {
-			enabled = false,
-			shade = "dark",
-			percentage = 0.15,
-		},
+		palette_overrides = {},
+		overrides = {},
 
-		no_italic = false,
-		no_bold = false,
-		no_underline = false,
-
-		styles = {
-			comments = { "italic" },
-			conditionals = { "italic" },
-			functions = { "bold" },
-			keywords = {},
-			strings = {},
-			variables = {},
-			numbers = {},
-			booleans = {},
-			properties = {},
-			types = {},
-			operators = {},
-		},
-
-		lsp_styles = {
-			virtual_text = {
-				errors = { "italic" },
-				hints = { "italic" },
-				warnings = { "italic" },
-				information = { "italic" },
-				ok = { "italic" },
-			},
-			underlines = {
-				errors = { "undercurl" },
-				hints = { "undercurl" },
-				warnings = { "undercurl" },
-				information = { "undercurl" },
-			},
-			inlay_hints = {
-				background = false,
-			},
-		},
-
-		color_overrides = {},
-		custom_highlights = {},
-
-		default_integrations = true,
-		auto_integrations = true,
-
-		integrations = {
-			fzf = true,
-			indent_blankline = { enabled = true },
-			gitsigns = true,
-			treesitter = true,
-			neotree = true,
-			mason = true,
-			fidget = true,
-			alpha = true,
-			lsp_trouble = true,
-			telescope = { enabled = true },
-			blink_cmp = { style = "bordered" },
-		},
+		dim_inactive = false,
+		transparent_mode = true,
 	},
 
 	config = function(_, opts)
-		require("catppuccin").setup(opts)
-		vim.cmd.colorscheme("catppuccin")
+		require("gruvbox").setup(opts)
+		vim.o.background = "dark"
+		vim.cmd.colorscheme("gruvbox")
 	end,
 }
