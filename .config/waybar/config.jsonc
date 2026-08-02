@@ -10,12 +10,20 @@
 
   "modules-right": [
     "group/internet_speed",
-    "group/gpus",
+    "temperature",
+    // "group/gpus",
     "group/cpuram",
     "group/sound",
     "group/system",
     "group/tray-box",
   ],
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C ",
+  },
 
   "custom/openbracket": {
     "format": "[",
@@ -105,7 +113,7 @@
     "modules": ["custom/openbracket", "ext/workspaces", "custom/closebracket"],
   },
 
-  "hyprland/workspaces": {
+  "niri/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
   },
@@ -124,10 +132,10 @@
 
   "group/windows": {
     "orientation": "horizontal",
-    "modules": ["custom/openbracket", "hyprland/window", "custom/closebracket"],
+    "modules": ["custom/openbracket", "niri/window", "custom/closebracket"],
   },
 
-  "hyprland/window": {
+  "niri/window": {
     "format": "{title}",
     "max-length": 20,
     "min-length": 0,
