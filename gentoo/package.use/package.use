@@ -1,13 +1,15 @@
-sys-kernel/installkernel systemd-boot dracut systemd -grub
+sys-kernel/installkernel grub dracut
+
+#required for systemd-boot
+#sys-kernel/installkernel systemd-boot dracut systemd -grub
 sys-kernel/gentoo-kernel-bin modules-compress
 x11-libs/libdrm video_cards_radeon
-media-video/pipewire sound-server dbus v4l
-media-sound/pulseaudio -daemon
+media-video/pipewire sound-server dbus v4l pipewire-alsa jack-sdk extra elogind loudness echo-cancel ffmpeg -bluetooth 
 x11-drivers/nvidia-drivers kernel-open tools modules-compress
 gnome-base/gvfs mtp udisks policykit fuse keyring
 net-vpn/wireguard-tools wg-quick
-media-fonts/nerd-fonts jetbrainsmono 0xproto nerdfontssymbolsonly
-sys-boot/grub mount
+media-fonts/nerd-fonts jetbrainsmono 0xproto nerdfontssymbolsonly cascadiamono
+# sys-boot/grub mount
 net-misc/networkmanager modemanager tools
 gui-apps/waybar tray mpris niri
 gnome-extra/nm-applet appindicator
@@ -15,7 +17,7 @@ gnome-extra/nm-applet appindicator
 # required by ani-cli
 net-misc/aria2 adns
 
-media-video/ffmpeg nvidia nvenc cuda encode x264 x265 mp3 opus vorbis vpx vaapi
+media-video/ffmpeg nvidia nvenc cuda encode x264 x265 mp3 opus vorbis vpx vaapi opengl
 media-video/obs-studio lua nvenc speex v4l wayland pipewire
 mpv-plugin/mpv-mpris autoload
 
@@ -27,7 +29,7 @@ www-apps/hugo extended
 media-libs/freetype brotli
 
 # required for systemd-boot 
-sys-apps/systemd-utils udev boot kernel-install 
+#sys-apps/systemd-utils udev boot kernel-install 
 
 dev-util/ostree -grub
 sys-boot/woeusb-ng -gui
@@ -37,3 +39,5 @@ net-misc/networkmanager -modemmanager
 gnome-extra/nm-applet -modemmanager
 gnome-base/gnome-settings-daemon -modemmanager
 media-video/pipewire -modemmanager
+
+sys-auth/pambase gnome-keyring

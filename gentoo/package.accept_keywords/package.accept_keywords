@@ -50,3 +50,6 @@ dev-lang/zig-bin ~amd64
 gui-apps/sway-audio-idle-inhibit ~amd64
 gui-apps/wlopm ~amd64
 
+x11-themes/breezex-xcursors ~amd64
+
+media-libs/raylib ~amd64

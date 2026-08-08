@@ -18,8 +18,8 @@ environment {
 
 }
 cursor {
-  xcursor-theme "breeze_cursors"
-  xcursor-size 24
+  xcursor-theme "BreezeX-Light"
+  xcursor-size 28
   hide-when-typing
   hide-after-inactive-ms 1000
 }
@@ -54,8 +54,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 
 debug {
-    ignore-drm-device "/dev/dri/renderD128"
-    render-drm-device "/dev/dri/renderD129"
+    // ignore-drm-device "/dev/dri/renderD128"
+    // render-drm-device "/dev/dri/renderD129"
     // #disable-resize-throttling
 }
 
